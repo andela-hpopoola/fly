@@ -1,17 +1,12 @@
 class CreateFlights < ActiveRecord::Migration[5.1]
   def change
     create_table :flights do |t|
-      t.references :to
-      t.references :from
-      t.integer :no_of_passengers
+      t.references :destination
       t.string :flight_date
-      t.string :date
-      t.references :airport, foreign_key: true
+      t.belongs_to :airport, index: true
+      t.belongs_to :airline, index: true
 
       t.timestamps
     end
-
-    add_foreign_key :flights, :locations, column: :to_id, primary_key: :id
-    add_foreign_key :flights, :locations, column: :from_id, primary_key: :id
   end
 end

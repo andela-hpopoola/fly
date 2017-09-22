@@ -15,6 +15,13 @@ ActiveRecord::Schema.define(version: 20170921105209) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "airlines", force: :cascade do |t|
+    t.string "name"
+    t.integer "no_of_passengers"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "airports", force: :cascade do |t|
     t.string "name"
     t.bigint "location_id"
@@ -33,17 +40,15 @@ ActiveRecord::Schema.define(version: 20170921105209) do
   end
 
   create_table "flights", force: :cascade do |t|
-    t.bigint "to_id"
-    t.bigint "from_id"
-    t.integer "no_of_passengers"
+    t.bigint "destination_id"
     t.string "flight_date"
-    t.string "date"
     t.bigint "airport_id"
+    t.bigint "airline_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["airline_id"], name: "index_flights_on_airline_id"
     t.index ["airport_id"], name: "index_flights_on_airport_id"
-    t.index ["from_id"], name: "index_flights_on_from_id"
-    t.index ["to_id"], name: "index_flights_on_to_id"
+    t.index ["destination_id"], name: "index_flights_on_destination_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -73,8 +78,5 @@ ActiveRecord::Schema.define(version: 20170921105209) do
   end
 
   add_foreign_key "airports", "locations"
-  add_foreign_key "flights", "airports"
-  add_foreign_key "flights", "locations", column: "from_id"
-  add_foreign_key "flights", "locations", column: "to_id"
   add_foreign_key "passengers", "users"
 end

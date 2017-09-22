@@ -3,6 +3,8 @@ require "rails_helper"
 RSpec.describe Passenger, type: :model do
   context "when validating associations" do
     it { is_expected.to belong_to(:user) }
+    it { is_expected.to have_many(:bookings) }
+    it { is_expected.to have_many(:flights) }
   end
 
   context "when validating fields" do
