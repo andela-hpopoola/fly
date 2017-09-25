@@ -1,0 +1,40 @@
+<%= form_tag('flights/search', method: 'post', remote:true) do %>
+  <div class="row">
+    <div class="col-md-3">
+      <%= select_tag :leaving_from,
+                      options_from_collection_for_select(@locations, "id", "name"),
+                      { 
+                      class: "custom-select form-control form-control-lg",
+                      id:"leaving_from",
+                      required: true,
+                      include_blank: "Select Location" 
+                    } 
+      %>
+      <%= label_tag :leaving_from, "Leaving From" %>
+    </div>
+    <div class="col-md-3">
+      <%= select_tag :going_to,
+                      options_from_collection_for_select(@locations, "id", "name"),
+                      { 
+                      class: "custom-select form-control form-control-lg",
+                      id:"going_to",
+                      required: true,
+                      include_blank: "Select Location" 
+                    } 
+      %>
+      <%= label_tag :going_to, "Going To" %>
+    </div>
+    <div class="col-md-3">
+      <%= date_field_tag :flight_date, nil, class: "form-control form-control-lg", min: Date.current, value: Date.current, required:true %>
+      <%= label_tag :flight_date, "Departure Date" %>
+    </div>
+    <div class="col-md-3">
+      <%= number_field_tag 'no_of_passengers', 1, min: 1, max: 10, class: 'form-control form-control-lg' %>
+      <%= label_tag :no_of_passengers, "No of Passengers" %>
+    </div>
+    <div class="col-md-6">
+      <%= submit_tag "Search for Available Flights", class: "btn btn-primary btn-lg"  %>
+    </div>
+  </div>
+<% end %>
+      

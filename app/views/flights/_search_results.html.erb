@@ -1,0 +1,23 @@
+<% if @flights.empty? %>
+  <h2 class="col-12">No flight found</h2>
+<% else %>
+  <br><br>
+  <h2 class="col-12">Search Results</h2>
+  <% @flights.each do |flight| %>
+    <div class="col-sm-4">
+      <div class="card flight-card">
+        <div class="card-body">
+          <h4 class="card-title"><%= flight.airport.location.name %> to <%= flight.destination.name %></h4>
+          <p class="card-text"><%= flight.airport.name %></p>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Departure Date: &nbsp;<strong><%= Date.parse(flight.flight_date).to_s %></strong></li>
+          <li class="list-group-item">Available Seat: <%= flight.available_seats %></li>
+        </ul>
+        <div class="card-footer">
+          <a href="#" class="card-link btn btn-primary">Book Flight</a>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

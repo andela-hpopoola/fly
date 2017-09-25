@@ -1,0 +1,43 @@
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <div class="container">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">FLY</a>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Available Flights</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Sign up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Login</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<section>
+  <div class="container">
+    <section class="row">
+      <div class="col-sm-6">
+        <h1>
+          FLY <br>
+          <small>
+            Book unique flights and experience your travel with comfort and conveniency
+          </small>
+        </h1>
+      </div>
+    </section>
+    <section>
+      <%= render 'flights/search_form' %>
+    </section>
+    <div id="search-results" class="row"></div>
+  </div>
+</section>

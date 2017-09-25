@@ -5,7 +5,7 @@ class Flight < ApplicationRecord
   has_many :bookings
   has_many :passengers, through: :bookings
 
-  validates :destination, presence: true
+  validates :destination_id, presence: true
   validates :available_seats, presence: true
   validates :airline_id, presence: true
   validates :flight_date, presence: true

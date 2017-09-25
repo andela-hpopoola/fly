@@ -1,0 +1,11 @@
+@import "bootstrap/custom";
+
+.flight-card {
+  margin-top: 30px;
+
+  .card-body {
+    background: $red;
+    color: white;
+    padding: 30px;
+  }
+}
