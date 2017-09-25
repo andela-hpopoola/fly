@@ -11,7 +11,7 @@ RSpec.describe Flight, type: :model do
 
   context "when validating fields" do
     it { is_expected.to validate_presence_of(:destination_id) }
-    it { is_expected.to validate_presence_of(:to_id) }
+    it { is_expected.to validate_presence_of(:available_seats) }
     it { is_expected.to validate_presence_of(:flight_date) }
     it { is_expected.to validate_presence_of(:airline_id) }
     it { is_expected.to validate_presence_of(:airport_id) }

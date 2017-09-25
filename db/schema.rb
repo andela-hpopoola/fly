@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20170921105209) do
   create_table "flights", force: :cascade do |t|
     t.bigint "destination_id"
     t.string "flight_date"
+    t.integer "available_seats"
     t.bigint "airport_id"
     t.bigint "airline_id"
     t.datetime "created_at", null: false

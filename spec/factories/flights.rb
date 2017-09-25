@@ -1,8 +1,7 @@
 FactoryGirl.define do
   factory :flight do
-    to_id 1
-    from_id 2
-    no_of_passengers 100
+    destination 2
+    available_seats 10
     flight_date "MyString"
     date "MyString"
     airport nil
