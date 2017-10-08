@@ -6,7 +6,6 @@ class CreatePassengers < ActiveRecord::Migration[5.1]
       t.string :email
       t.date :dob
       t.string :phone
-      t.references :user, foreign_key: true
 
       t.timestamps
     end

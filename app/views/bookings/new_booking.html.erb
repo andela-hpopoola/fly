@@ -1,0 +1,15 @@
+<%= form_for(@booking) do |f| %>
+
+  <%= f.hidden_field :flight_id, { value: params['flight_id'] } %>
+  <%= f.hidden_field :user_id, { value: 1 } %>
+  <%= f.hidden_field :price, { value: @flight.price } %>
+  
+  <%= f.fields_for :passengers do |passenger_form| %>
+    <%= render 'passenger_fields', f: passenger_form %>
+  <% end %>
+
+  <div class="links panel-footer">
+    <%= link_to_add_association 'Add Passenger', f, :passengers, class: 'btn btn-primary' %>
+    <%= f.submit 'Book Flight', class: "btn btn-primary" %>
+  </div>
+<% end %>

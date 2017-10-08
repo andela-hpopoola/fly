@@ -1,7 +1,6 @@
 class FlightsController < ApplicationController
   def search
     @flights = Flight.search(search_params)
-    p @flights
   end
 
   private

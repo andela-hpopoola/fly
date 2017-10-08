@@ -3,7 +3,7 @@ class Flight < ApplicationRecord
   belongs_to :airport
   belongs_to :airline
   has_many :bookings
-  has_many :passengers, through: :bookings
+  has_many :users, through: :bookings
 
   validates :destination_id, presence: true
   validates :available_seats, presence: true

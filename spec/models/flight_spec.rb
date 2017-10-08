@@ -6,7 +6,7 @@ RSpec.describe Flight, type: :model do
     it { is_expected.to belong_to(:airline) }
     it { is_expected.to belong_to(:airport) }
     it { is_expected.to have_many(:bookings) }
-    it { is_expected.to have_many(:passengers) }
+    it { is_expected.to have_many(:users) }
   end
 
   context "when validating fields" do

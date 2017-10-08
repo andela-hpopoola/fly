@@ -1,0 +1,24 @@
+<div class="nested-fields form-inline">
+  <section>
+    <div class = "form-group">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name, { class: "form-control", required: true } %>
+    </div>
+
+    <div class = "form-group">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name, { class: "form-control", required: true } %>
+    </div>
+
+    <div class = "form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, { class: "form-control", required: true } %>
+    </div>
+
+    <div class = "form-group">
+      <%= f.label :phone %>
+      <%= f.phone_field :phone, { class: "form-control", required: true } %>
+    </div>
+    <%= link_to_remove_association 'Remove Passenger', f %>
+  </section>
+</div>

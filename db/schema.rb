@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170921105209) do
+ActiveRecord::Schema.define(version: 20171007162243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,12 +31,13 @@ ActiveRecord::Schema.define(version: 20170921105209) do
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.bigint "passenger_id"
+    t.bigint "user_id"
     t.bigint "flight_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "price"
     t.index ["flight_id"], name: "index_bookings_on_flight_id"
-    t.index ["passenger_id"], name: "index_bookings_on_passenger_id"
+    t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "flights", force: :cascade do |t|
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(version: 20170921105209) do
     t.bigint "airline_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "price", default: 20000
     t.index ["airline_id"], name: "index_flights_on_airline_id"
     t.index ["airport_id"], name: "index_flights_on_airport_id"
     t.index ["destination_id"], name: "index_flights_on_destination_id"
@@ -62,12 +64,11 @@ ActiveRecord::Schema.define(version: 20170921105209) do
     t.string "first_name"
     t.string "last_name"
     t.string "email"
-    t.date "dob"
     t.string "phone"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_passengers_on_user_id"
+    t.bigint "booking_id"
+    t.index ["booking_id"], name: "index_passengers_on_booking_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -79,5 +80,5 @@ ActiveRecord::Schema.define(version: 20170921105209) do
   end
 
   add_foreign_key "airports", "locations"
-  add_foreign_key "passengers", "users"
+  add_foreign_key "passengers", "bookings"
 end

@@ -2,7 +2,8 @@ require "rails_helper"
 
 RSpec.describe User, type: :model do
   context "when validating associations" do
-    it { is_expected.to have_many(:passengers) }
+    it { is_expected.to have_many(:bookings) }
+    it { is_expected.to have_many(:flights) }
   end
 
   context "when validating fields" do
