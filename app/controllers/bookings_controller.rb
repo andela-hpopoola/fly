@@ -18,6 +18,13 @@ class BookingsController < ApplicationController
   end
 
   def show
+    @booking = Booking.find_by_id(params[:id]) if params[:id]
+    if @booking
+      @selected_flight = @booking.flight
+      @passengers = Passenger.where(booking_id: @booking.id)
+    else
+      redirect_to flights_path, alert: "Booking record not found"
+    end
   end
 
   private

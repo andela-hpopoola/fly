@@ -1,0 +1,49 @@
+<% if @booking.passengers.present? %>
+  <div>
+    <table>
+      <tbody>
+        <tr>
+          <td>Reference Number</td>
+          <td><%= @booking.id %></td>
+        </tr>
+        <tr>
+          <td>Aiport</td>
+          <td><%= @booking.flight.airport.name%></td>
+        </tr>
+        <tr>
+          <td>Airline</td>
+          <td><%= @booking.flight.airline.name%></td>
+        </tr>
+        <tr>
+          <td>Destination</td>
+          <td><%= @booking.flight.destination.name %></td>
+        </tr>
+        <tr>
+          <td>Departure Date</td>
+          <td><%= @booking.flight.flight_date %> 
+        </tr>
+      </tbody>
+    </table>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>S/N</th>
+          <th>Name</th>
+          <th>Phone Number</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% count = 0 %>
+        <% @booking.passengers.each do |passenger| %>
+          <tr>
+            <td><%= count += 1 %></td>
+            <td><%= passenger.first_name + ' ' + passenger.last_name %></td>
+            <td><%= passenger.email %></td>
+            <td><%= passenger.phone %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>
