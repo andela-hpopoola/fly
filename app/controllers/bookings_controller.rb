@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
 
   def new_booking
+    byebug
     if params[:flight_id]
       @flight = Flight.find(params[:flight_id])
       @booking = Booking.new
@@ -14,6 +15,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     @booking.save
+    UserMailer.booking_confirmation(current_user).deliver_now
     redirect_to booking_path(@booking)
   end
 
