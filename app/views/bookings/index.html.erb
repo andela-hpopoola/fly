@@ -1,3 +1,16 @@
+
+
+<%= form_tag('bookings/search', method: 'post', remote:true, class: 'form-inline') do %>
+  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon"><span class="fa fa-search"></span></div>
+    <%= number_field_tag 'booking_id', nil, min: 1, class: 'form-control', placeholder:"Booking Ref. Code" %>
+  </div>
+
+  <div class="mb-2 mr-sm-2 mb-sm-0">
+    <button type="submit" class="btn btn-primary">Search for Booking</button>
+  </div>
+<% end %>
+      
 <% if @bookings.count > 0 %>
   <table class="table">
     <h4>Past Bookings</h4>

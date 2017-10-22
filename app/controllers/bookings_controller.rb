@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :set_booking, only: %i(show edit update destroy)
+  before_action :authenticate_user!
 
   def index
     @bookings = current_user.bookings
@@ -37,6 +38,15 @@ class BookingsController < ApplicationController
   def update
   end
 
+  def search
+    @booking = Booking.find_by_id(params[:booking_id])
+    if @booking
+      redirect_to booking_path(@booking.id)
+    else
+      redirect_to bookings_path, alert: "Booking not found for Ref. Code " + params[:booking_id]
+    end
+  end
+
   def destroy
     redirect_to bookings_path, notice: "Booking has been successfully cancelled" if @booking.destroy
   end
@@ -46,6 +56,7 @@ class BookingsController < ApplicationController
   def booking_params
     params.require(:booking).
       permit(:flight_id,
+             :booking_id,
              :user_id,
              :price,
              passengers_attributes: %i(first_name last_name email phone _destroy))

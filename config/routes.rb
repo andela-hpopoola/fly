@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   resources :flights
   resources :bookings
   post "bookings/new_booking" => "bookings#new_booking"
+  post "bookings/search" => "bookings#search"
 end
