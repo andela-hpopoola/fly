@@ -26,4 +26,9 @@ class Flight < ApplicationRecord
     );
   end
 
+  def self.available
+    tomorrow = DateTime.tomorrow
+    where("flight_date >= ?", tomorrow).order("flight_date")
+  end
+
 end

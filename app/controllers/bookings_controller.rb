@@ -1,7 +1,11 @@
 class BookingsController < ApplicationController
+  before_action :set_booking, only: [:show, :edit, :update, :destroy]
+
+  def index
+    @bookings = current_user.bookings
+  end
 
   def new_booking
-    byebug
     if params[:flight_id]
       @flight = Flight.find(params[:flight_id])
       @booking = Booking.new
@@ -20,13 +24,21 @@ class BookingsController < ApplicationController
   end
 
   def show
-    @booking = Booking.find_by_id(params[:id]) if params[:id]
     if @booking
-      @selected_flight = @booking.flight
       @passengers = Passenger.where(booking_id: @booking.id)
     else
       redirect_to flights_path, alert: "Booking record not found"
     end
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def destroy
+    redirect_to bookings_path, notice: "Booking has been successfully cancelled" if @booking.destroy
   end
 
   private
@@ -37,6 +49,10 @@ class BookingsController < ApplicationController
              :user_id,
              :price,
              passengers_attributes: %i(first_name last_name email phone _destroy))
+  end
+
+  def set_booking
+    @booking = Booking.find_by_id(params[:id]) if params[:id]
   end
 
 end 

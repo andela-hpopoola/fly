@@ -19,93 +19,75 @@ Airline.destroy_all
 
 locations = [
   { name: "Abuja" },
-  { name: "Dutse" },
-  { name: "Enugu" },
   { name: "Kano" },
   { name: "Lagos" },
   { name: "Port Harcourt" },
-  { name: "Sokoto" },
-  { name: "Calabar" },
-  { name: "Asaba" },
-  { name: "Uyo" }
 ]
 
-saved_locations = {}
+@saved_locations = {}
 locations.each do |location|
-  saved_locations[location[:name]] = Location.create(location)
+  @saved_locations[location[:name]] = Location.create(location)
 end
 
 
 airports = [
-  { name: "Nnamdi Azikwe International Airport", location: saved_locations['Abuja'] },
-  { name: "Dutse International Airport", location: saved_locations['Dutse'] },
-  { name: "Akanu Ibiam International Airport", location: saved_locations['Enugu'] },
-  { name: "Mallam Aminu Kano International Airport", location: saved_locations['Kano'] },
-  { name: "Murtala Muhammed International Airport", location: saved_locations['Lagos'] },
-  { name: "Port Harcourt International Airport", location: saved_locations['Port Harcourt'] },
-  { name: "Sadiq Abubakar III International Airport", location: saved_locations['Sokoto'] },
-  { name: "Margaret Ekpo International Airport", location: saved_locations['Calabar'] },
-  { name: "Asaba International Airport", location: saved_locations['Asaba'] },
-  { name: "Akwa Ibom International Airport", location: saved_locations['Uyo'] }
+  { name: "Nnamdi Azikwe International Airport", location: @saved_locations['Abuja'] },
+  { name: "Mallam Aminu Kano International Airport", location: @saved_locations['Kano'] },
+  { name: "Murtala Muhammed International Airport", location: @saved_locations['Lagos'] },
+  { name: "Port Harcourt International Airport", location: @saved_locations['Port Harcourt'] },
 ]
 
-saved_airports = {}
+@saved_airports = {}
 airports.each do |airport|
-  saved_airports[airport[:name]] = Airport.create!(airport)
+  @saved_airports[airport[:name]] = Airport.create!(airport)
 end
 
 
 airlines = [
-  { name: "Asiana", no_of_passengers: 50 },
   { name: "Swiss International Air Lines", no_of_passengers: 100 },
   { name: "Virgin Atlantic", no_of_passengers: 150 },
-  { name: "Nigerian Airways", no_of_passengers: 50 },
-  { name: "Lagos Airways", no_of_passengers: 20 },
-  { name: "Abuja Airways", no_of_passengers: 20 },
+  { name: "Nigeria Airways", no_of_passengers: 50 },
 ]
 
-saved_airlines = {}
+@saved_airlines = {}
 airlines.each do |airline|
-  saved_airlines[airline[:name]] = Airline.create!(airline)
+  @saved_airlines[airline[:name]] = Airline.create!(airline)
 end
 
-
-flights = [
-  { destination: saved_locations['Lagos'], flight_date: 20.day.from_now, airport: saved_airports['Nnamdi Azikwe International Airport'], airline: saved_airlines['Asiana'], available_seats: 10 },
-  { destination: saved_locations['Lagos'], flight_date: 25.day.from_now, airport: saved_airports['Nnamdi Azikwe International Airport'], airline: saved_airlines['Virgin Atlantic'], available_seats: 10 },
-  { destination: saved_locations['Lagos'], flight_date: 15.day.from_now, airport: saved_airports['Nnamdi Azikwe International Airport'], airline: saved_airlines['Swiss International Air Lines'], available_seats: 10 },
-  { destination: saved_locations['Lagos'], flight_date: 50.day.from_now, airport: saved_airports['Nnamdi Azikwe International Airport'], airline: saved_airlines['Abuja Airways'], available_seats: 10 },
-  { destination: saved_locations['Lagos'], flight_date: 100.day.from_now, airport: saved_airports['Nnamdi Azikwe International Airport'], airline: saved_airlines['Asiana'], available_seats: 10 },
-  { destination: saved_locations['Kano'], flight_date: 20.day.from_now, airport: saved_airports['Nnamdi Azikwe International Airport'], airline: saved_airlines['Swiss International Air Lines'], available_seats: 10 },
-  { destination: saved_locations['Kano'], flight_date: 200.day.from_now, airport: saved_airports['Nnamdi Azikwe International Airport'], airline: saved_airlines['Virgin Atlantic'], available_seats: 10 },
-  { destination: saved_locations['Kano'], flight_date: 10.day.from_now, airport: saved_airports['Nnamdi Azikwe International Airport'], airline: saved_airlines['Asiana'], available_seats: 10 },
-  { destination: saved_locations['Port Harcourt'], flight_date: 3.day.from_now, airport: saved_airports['Nnamdi Azikwe International Airport'], airline: saved_airlines['Virgin Atlantic'], available_seats: 10 },
-  { destination: saved_locations['Sokoto'], flight_date: 4.day.from_now, airport: saved_airports['Nnamdi Azikwe International Airport'], airline: saved_airlines['Nigerian Airways'], available_seats: 10 },
-  { destination: saved_locations['Abuja'], flight_date: 5.day.from_now, airport: saved_airports['Mallam Aminu Kano International Airport'], airline: saved_airlines['Nigerian Airways'], available_seats: 10 },
-  { destination: saved_locations['Abuja'], flight_date: 50.day.from_now, airport: saved_airports['Mallam Aminu Kano International Airport'], airline: saved_airlines['Virgin Atlantic'], available_seats: 10 },
-  { destination: saved_locations['Abuja'], flight_date: 15.day.from_now, airport: saved_airports['Mallam Aminu Kano International Airport'], airline: saved_airlines['Swiss International Air Lines'], available_seats: 10 },
-  { destination: saved_locations['Uyo'], flight_date: 6.day.from_now, airport: saved_airports['Nnamdi Azikwe International Airport'], airline: saved_airlines['Abuja Airways'], available_seats: 10 },
-  { destination: saved_locations['Abuja'], flight_date: 30.day.from_now, airport: saved_airports['Murtala Muhammed International Airport'], airline: saved_airlines['Asiana'], available_seats: 10 },
-  { destination: saved_locations['Abuja'], flight_date: 10.day.from_now, airport: saved_airports['Murtala Muhammed International Airport'], airline: saved_airlines['Virgin Atlantic'], available_seats: 10 },
-  { destination: saved_locations['Abuja'], flight_date: 100.day.from_now, airport: saved_airports['Murtala Muhammed International Airport'], airline: saved_airlines['Swiss International Air Lines'], available_seats: 10 },
-  { destination: saved_locations['Abuja'], flight_date: 15.day.from_now, airport: saved_airports['Murtala Muhammed International Airport'], airline: saved_airlines['Abuja Airways'], available_seats: 10 },
-  { destination: saved_locations['Abuja'], flight_date: 20.day.from_now, airport: saved_airports['Murtala Muhammed International Airport'], airline: saved_airlines['Nigerian Airways'], available_seats: 10 },
-  { destination: saved_locations['Abuja'], flight_date: 35.day.from_now, airport: saved_airports['Murtala Muhammed International Airport'], airline: saved_airlines['Asiana'], available_seats: 10 },
-  { destination: saved_locations['Dutse'], flight_date: 10.day.from_now, airport: saved_airports['Murtala Muhammed International Airport'], airline: saved_airlines['Nigerian Airways'], available_seats: 10 },
-  { destination: saved_locations['Enugu'], flight_date: 5.day.from_now, airport: saved_airports['Murtala Muhammed International Airport'], airline: saved_airlines['Asiana'], available_seats: 10 },
-  { destination: saved_locations['Kano'], flight_date: 20.day.from_now, airport: saved_airports['Murtala Muhammed International Airport'], airline: saved_airlines['Swiss International Air Lines'], available_seats: 10 },
-  { destination: saved_locations['Kano'], flight_date: 12.day.from_now, airport: saved_airports['Murtala Muhammed International Airport'], airline: saved_airlines['Swiss International Air Lines'], available_seats: 10 },
-  { destination: saved_locations['Kano'], flight_date: 25.day.from_now, airport: saved_airports['Murtala Muhammed International Airport'], airline: saved_airlines['Swiss International Air Lines'], available_seats: 10 },
-  { destination: saved_locations['Kano'], flight_date: 92.day.from_now, airport: saved_airports['Murtala Muhammed International Airport'], airline: saved_airlines['Swiss International Air Lines'], available_seats: 10 },
-  { destination: saved_locations['Port Harcourt'], flight_date: 3.day.from_now, airport: saved_airports['Murtala Muhammed International Airport'], airline: saved_airlines['Virgin Atlantic'], available_seats: 10 },
-  { destination: saved_locations['Sokoto'], flight_date: 4.day.from_now, airport: saved_airports['Murtala Muhammed International Airport'], airline: saved_airlines['Nigerian Airways'], available_seats: 10 },
-  { destination: saved_locations['Calabar'], flight_date: 5.day.from_now, airport: saved_airports['Murtala Muhammed International Airport'], airline: saved_airlines['Nigerian Airways'], available_seats: 10 },
-  { destination: saved_locations['Uyo'], flight_date: 6.day.from_now, airport: saved_airports['Murtala Muhammed International Airport'], airline: saved_airlines['Abuja Airways'], available_seats: 10 },
-  { destination: saved_locations['Sokoto'], flight_date: 4.day.from_now, airport: saved_airports['Port Harcourt International Airport'], airline: saved_airlines['Nigerian Airways'], available_seats: 10 },
-  { destination: saved_locations['Calabar'], flight_date: 5.day.from_now, airport: saved_airports['Port Harcourt International Airport'], airline: saved_airlines['Nigerian Airways'], available_seats: 10 },
-  { destination: saved_locations['Uyo'], flight_date: 6.day.from_now, airport: saved_airports['Port Harcourt International Airport'], airline: saved_airlines['Abuja Airways'], available_seats: 10 }
-]
-
-flights.each do |flight|
-  Flight.create!(flight)
+def save_flight(destination, airport, airline, limit=3)
+  count = 1
+  limit.times do |i|
+    Flight.create(
+      destination: @saved_locations[destination],
+      flight_date: count.day.from_now,
+      airport: @saved_airports[airport],
+      airline: @saved_airlines[airline],
+      available_seats: 10
+    )
+    count = (limit * i) + rand(1..6)
+  end
 end
+
+save_flight('Lagos', 'Nnamdi Azikwe International Airport', 'Nigeria Airways', 5)
+save_flight('Kano', 'Nnamdi Azikwe International Airport', 'Nigeria Airways')
+save_flight('Port Harcourt', 'Nnamdi Azikwe International Airport', 'Nigeria Airways')
+save_flight('Kano', 'Nnamdi Azikwe International Airport', 'Swiss International Air Lines')
+save_flight('Port Harcourt', 'Nnamdi Azikwe International Airport', 'Swiss International Air Lines')
+
+save_flight('Abuja', 'Murtala Muhammed International Airport', 'Nigeria Airways', 5)
+save_flight('Kano', 'Murtala Muhammed International Airport', 'Nigeria Airways')
+save_flight('Port Harcourt', 'Murtala Muhammed International Airport', 'Nigeria Airways')
+save_flight('Abuja', 'Murtala Muhammed International Airport', 'Virgin Atlantic')
+save_flight('Kano', 'Murtala Muhammed International Airport', 'Virgin Atlantic')
+save_flight('Port Harcourt', 'Murtala Muhammed International Airport', 'Virgin Atlantic')
+
+save_flight('Abuja', 'Mallam Aminu Kano International Airport', 'Nigeria Airways')
+save_flight('Lagos', 'Mallam Aminu Kano International Airport', 'Nigeria Airways')
+save_flight('Port Harcourt', 'Mallam Aminu Kano International Airport', 'Nigeria Airways', 1)
+save_flight('Abuja', 'Mallam Aminu Kano International Airport', 'Swiss International Air Lines')
+
+save_flight('Kano', 'Port Harcourt International Airport', 'Swiss International Air Lines', 2)
+save_flight('Lagos', 'Port Harcourt International Airport', 'Swiss International Air Lines')
+save_flight('Abuja', 'Port Harcourt International Airport', 'Virgin Atlantic')
+save_flight('Kano', 'Port Harcourt International Airport', 'Virgin Atlantic')
+save_flight('Lagos', 'Port Harcourt International Airport', 'Virgin Atlantic')

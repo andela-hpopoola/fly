@@ -1,6 +1,12 @@
 class FlightsController < ApplicationController
+  @@per_page = 6
+
   def search
-    @flights = Flight.search(search_params)
+    @flights = Flight.search(search_params).page(page).per(@@per_page)
+  end
+
+  def index
+    @flights = Flight.available.page(page).per(@@per_page)
   end
 
   private

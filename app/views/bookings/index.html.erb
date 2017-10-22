@@ -1,0 +1,52 @@
+<% if @bookings.count > 0 %>
+  <table class="table">
+    <h4>Past Bookings</h4>
+
+    <thead>
+      <tr>
+        <th>S/N</th>
+        <th>Full Name</th>
+        <th>Ref. no</th>
+        <th>Airline</th>
+        <th>Airport</th>
+        <th>Destination</th>
+        <th>Departure Date</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% count = 0 %>
+      <% @bookings.each do |booking| %>
+         <% booking.passengers.each do |passenger| %>
+          <tr>
+            <td><%= count += 1 %></td>
+            <td><%= passenger.first_name + ' ' + passenger.last_name %></td>
+            <td><%= booking.id %></td>
+            <td><%= booking.flight.airline.name %></td>
+            <td><%= booking.flight.airport.name %></td>
+            <td>
+              <%= booking.flight.airport.location.name %>
+              <span class="fa fa-long-arrow-right"></span>
+              <%= booking.flight.destination.name %>
+            </td>
+            <td><%= display_date booking.flight.flight_date %></td>
+            <td>
+              <%= link_to edit_booking_path(booking), class: "icon-edit" do %>
+                <span class="fa fa-edit"></span>
+              <% end %>
+            </td>
+            <td>
+              <%= link_to booking, method: :delete, data: { confirm: 'Are you sure you want to cancel booking?' }, class: "icon-delete" do %>
+                <span class="fa fa-times"></span>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <h2>You have no previous bookings</h2>
+  <br>
+  <a href="/flights" class ="btn btn-primary">Book A flight now</a>
+<% end %>

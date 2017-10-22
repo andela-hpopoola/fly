@@ -7,5 +7,9 @@ module ApplicationHelper
       when "alert" then "alert alert-warning"
     end
   end
+
+  def display_date(date)
+    return date.strftime("%b %e %Y (%a)")
+  end
 end
 

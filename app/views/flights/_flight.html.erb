@@ -1,0 +1,22 @@
+<div class="col-sm-4">
+  <div class="card flight-card">
+    <div class="card-body">
+      <h4 class="card-title"><%= flight.airport.location.name %> to <%= flight.destination.name %></h4>
+      <p class="card-text"><%= flight.airport.name %></p>
+      <small>Leaving in <%= distance_of_time_in_words flight.flight_date, Time.now %></small>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Departure Date: &nbsp;<strong><%= display_date flight.flight_date %></strong></li>
+      <li class="list-group-item">Available Seat: <%= flight.available_seats %></li>
+    </ul>
+    <div class="card-footer">
+      <% unless current_user %>
+        <small> Login to Book Flight </small>
+      <% else %>
+        <%= submit_tag 'Book Flight', class: "card-link btn btn-primary" %>
+      <% end %>
+      <input name="flight_id" type="hidden" value= <%= flight.id %> />
+      <input name="no_of_passengers" type="hidden" value= <%= params[:no_of_passengers] %> />
+    </div>
+  </div>
+</div>

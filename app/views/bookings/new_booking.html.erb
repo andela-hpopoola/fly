@@ -1,7 +1,7 @@
 <%= form_for(@booking) do |f| %>
 
   <%= f.hidden_field :flight_id, { value: params['flight_id'] } %>
-  <%= f.hidden_field :user_id, { value: 1 } %>
+  <%= f.hidden_field :user_id, { value: current_user.id} %>
   <%= f.hidden_field :price, { value: @flight.price } %>
   
   <%= f.fields_for :passengers do |passenger_form| %>
