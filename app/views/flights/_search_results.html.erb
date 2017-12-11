@@ -1,12 +1,14 @@
-<% if @flights.empty? %>
-  <h2 class="col-12">No flight found</h2>
-<% else %>
-  <h2 class="col-12">Search Results</h2>
-  <%= form_tag({controller: 'bookings', action: 'new_booking'}, method: 'post') do %>
-    <div class="container">
-      <div class="row">
-        <%= render @flights %>
+<div class="search-results">
+  <% if @flights.empty? %>
+    <h2 class="col-12">No flight found</h2>
+  <% else %>
+    <h2 class="col-12">Search Results</h2>
+    <%= form_tag({controller: 'bookings', action: 'new_booking'}, method: 'post') do %>
+      <div class="container">
+        <div class="row">
+          <%= render @flights %>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>  

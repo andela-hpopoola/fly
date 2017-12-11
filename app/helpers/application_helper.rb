@@ -9,7 +9,12 @@ module ApplicationHelper
   end
 
   def display_date(date)
-    return date.strftime("%b %e %Y (%a)")
+    date.strftime("%b %e %Y (%a)")
+  end
+
+  def display_flight_notice
+    'Flights leaving within 24 hours are shown in 
+      <span class="text-success">green colour</span>'.html_safe
   end
 end
 

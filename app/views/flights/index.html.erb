@@ -1,7 +1,12 @@
-    <div class="row">
-      <div class="col-12">
-        <h1>All Flights</h1>
+     <%= form_tag({controller: 'bookings', action: 'new_booking'}, method: 'post') do %>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h1>All Flights</h1>
+            <%= display_flight_notice %>
+          </div>
+          <%= render @flights %>
+          <%= paginate @flights %>
+        </div>
       </div>
-      <%= render @flights %>
-      <%= paginate @flights %>
-    </div>
+    <% end %>

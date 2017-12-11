@@ -1,15 +1,67 @@
-<%= form_for(@booking) do |f| %>
+<section>
+  <div class="row">
+    <div class="col-sm-8 inner-section">
+      <div class="card new-bookings">
+        <div class="card-body">
+          <h2>New Bookings</h2>
+          <div class="flight-details">
+              <span> From <%= @flight.airport.location.name %></span> to
+              <span> <%= @flight.destination.name %></span> - 
+              <span> <%= display_date @flight.flight_date %></span>
+          </div>
+          <%= form_for(@booking) do |f| %>
 
-  <%= f.hidden_field :flight_id, { value: params['flight_id'] } %>
-  <%= f.hidden_field :user_id, { value: current_user.id} %>
-  <%= f.hidden_field :price, { value: @flight.price } %>
-  
-  <%= f.fields_for :passengers do |passenger_form| %>
-    <%= render 'passenger_fields', f: passenger_form %>
-  <% end %>
+            <%= f.hidden_field :flight_id, { value: params['flight_id'] } %>
+            <%= f.hidden_field :user_id, { value: current_user.id} %>
+            <%= f.hidden_field :price, { value: @flight.price } %>
+            
+            <%= f.fields_for :passengers do |passenger_form| %>
+              <%= render 'passenger_fields', f: passenger_form %>
+            <% end %>
 
-  <div class="links panel-footer">
-    <%= link_to_add_association 'Add Passenger', f, :passengers, class: 'btn btn-primary' %>
-    <%= f.submit 'Book Flight', class: "btn btn-primary" %>
+            <div class="add-passengers">
+              <%= link_to_add_association 'Add Passengers', f, :passengers, class: 'btn btn-light pull-right' %>
+            </div>
+
+            <div class="book-flight">
+                  <%= f.submit 'Book Flight', class: "btn btn-danger" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-sm-4">
+      <div class="card flight-information">
+        <div class="card-header">
+          <h4>Flight Information</h4>
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item justify-content-between">
+              <label>Flight Inofrmation</label>
+              <p><%= @flight.airport.location.name %> <span class="fa fa-long-arrow-right"></span> <%= @flight.destination.name %> </p>
+            </li>
+            <li class="list-group-item justify-content-between">
+              <label>Airport</label>
+              <p><%= @flight.airport.name %></p>
+            </li>
+            <li class="list-group-item justify-content-between">
+              <label>Airline</label>
+              <p><%= @flight.airline.name %></p>
+            </li>
+            <li class="list-group-item justify-content-between">
+              <label>Destination</label>
+              <p><%= @flight.destination.name%></p>
+            </li>
+            <li class="list-group-item justify-content-between">
+              <label>Departure Date</label>
+              <p><%= display_date @flight.flight_date%></p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
   </div>
-<% end %>
+</section>

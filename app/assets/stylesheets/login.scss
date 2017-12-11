@@ -1,0 +1,15 @@
+.login-page,
+.signup-page {
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  height: 95%;
+  min-height: 95vh !important;
+  margin-top: -30px;
+
+  .card {
+    width: 400px;
+  }
+}
